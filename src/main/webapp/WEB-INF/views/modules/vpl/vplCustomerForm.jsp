@@ -40,13 +40,13 @@
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
-		<div class="control-group">
+		<ddiv class="control-group">
 			<label class="control-label">客户名称：</label>
 			<div class="controls">
 				<form:input path="cusName" placeholder="请输入客户名称" htmlEscape="false" maxlength="255" class="input-xlarge " required="required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
-		</div>
+		</ddiv>
 		<div class="control-group">
 			<label class="control-label">加工类型：</label>
 			<c:forEach items="${dictList}" var="dict" varStatus="cou">
