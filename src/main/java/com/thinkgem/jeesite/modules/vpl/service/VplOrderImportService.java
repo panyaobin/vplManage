@@ -5,6 +5,7 @@ package com.thinkgem.jeesite.modules.vpl.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,9 @@ import com.thinkgem.jeesite.modules.vpl.dao.VplOrderImportDao;
 @Service
 @Transactional(readOnly = true)
 public class VplOrderImportService extends CrudService<VplOrderImportDao, VplOrderImport> {
+
+	@Autowired
+	private  VplOrderImportDao vplOrderImportDao;
 
 	public VplOrderImport get(String id) {
 		return super.get(id);
@@ -44,4 +48,8 @@ public class VplOrderImportService extends CrudService<VplOrderImportDao, VplOrd
 		super.delete(vplOrderImport);
 	}
 
+	@Transactional(readOnly = false)
+	public VplOrderImport findListByProModel(String proModel,String orderId){
+		return  vplOrderImportDao.findListByProModel(proModel,orderId);
+	}
 }

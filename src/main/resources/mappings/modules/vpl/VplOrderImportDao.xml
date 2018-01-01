@@ -33,7 +33,24 @@
 		<include refid="vplOrderImportJoins"/>
 		WHERE a.id = #{id}
 	</select>
-	
+
+	<select id="findListByProModel" resultType="VplOrderImport" parameterType="String">
+		SELECT
+		<include refid="vplOrderImportColumns"/>
+		FROM vpl_order_import a
+		<include refid="vplOrderImportJoins"/>
+		<where>
+			a.del_flag = 0
+			<if test="proModel != null and proModel != ''">
+				AND a.pro_model = #{proModel}
+			</if>
+			<if test="orderId != null and orderId != ''">
+				AND a.order_id = #{orderId}
+			</if>
+		</where>
+	</select>
+
+
 	<select id="findList" resultType="VplOrderImport">
 		SELECT 
 			<include refid="vplOrderImportColumns"/>

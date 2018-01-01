@@ -23,12 +23,10 @@
 </head>
 <body>
 <ul class="nav nav-tabs">
-    <li><a href="${ctx}/vpl/vplOrderImport/form?id=${vplOrderImport.id}">订单<shiro:hasPermission
-            name="vpl:vplOrderImport:edit">${not empty vplOrderImport.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission
-            name="vpl:vplOrderImport:edit">查看</shiro:lacksPermission></a></li>
-    <li><a href="${ctx}/vpl/vplOrderImport/">订单列表</a></li>
-    <li><a href="${ctx}/vpl/vplOrderImport/list?remarks=online">在线产品</a></li>
-    <li class="active"><a href="${ctx}/vpl/vplOrderDelivery/">出货列表</a></li>
+    <li class="active"><a href="${ctx}/vpl/vplCustomer/">客户管理列表</a></li>
+    <shiro:hasPermission name="vpl:vplCustomer:edit">
+        <li><a href="${ctx}/vpl/vplCustomer/form">客户管理添加</a></li>
+    </shiro:hasPermission>
 </ul>
 <form:form id="searchForm" modelAttribute="vplCustomer" action="${ctx}/vpl/vplCustomer/" method="post"
            class="breadcrumb form-search"  style="width: 58.3%">

@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.vpl.dao;
 import com.thinkgem.jeesite.common.persistence.CrudDao;
 import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
 import com.thinkgem.jeesite.modules.vpl.entity.VplOrderImport;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +17,5 @@ import java.util.List;
  */
 @MyBatisDao
 public interface VplOrderImportDao extends CrudDao<VplOrderImport> {
+    VplOrderImport findListByProModel(@Param(value ="proModel") String proModel, @Param(value="orderId")String orderId);
 }

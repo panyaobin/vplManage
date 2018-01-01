@@ -40,6 +40,21 @@
 		<include refid="vplOrderDeliveryJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="cusName != null and cusName != ''">
+				AND a.cus_name LIKE concat('%', #{cusName},'%')
+			</if>
+			<!--<if test="deliveryStartDate != null and deliveryStartDate != ''">
+				AND a.delivery_date &gt;= #{deliveryStartDate}
+			</if>
+			<if test="deliveryEndDate!= null and deliveryEndDate != ''">
+				AND a.delivery_date &lt;= #{deliveryEndDate}
+			</if>-->
+			<!--<if test="_deliveryStartDate != null and _deliveryStartDate != ''">
+				AND a.delivery_date &gt;= #{_deliveryStartDate}
+			</if>
+			<if test="_deliveryEndDate!= null and _deliveryEndDate != ''">
+				AND a.delivery_date &lt;= #{_deliveryEndDate}
+			</if>-->
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -71,7 +86,6 @@
 	
 	<insert id="insert">
 		INSERT INTO vpl_order_delivery(
-			id,
 			delivery_id,
 			pro_model,
 			leng,
@@ -89,7 +103,6 @@
 			remarks,
 			del_flag
 		) VALUES (
-			#{id},
 			#{deliveryId},
 			#{proModel},
 			#{leng},

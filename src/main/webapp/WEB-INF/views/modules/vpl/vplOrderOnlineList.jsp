@@ -20,6 +20,7 @@
              * 生成出货单
              */
             $("#orderDelivery").bind("click",function(){
+                debugger;
                 var ids = getAllCheckId();
                 if(ids.length/2<=8){
                     if(ids !="" && ids != null){
@@ -57,9 +58,9 @@
 		<shiro:hasPermission name="vpl:vplOrderImport:edit"><li><a href="${ctx}/vpl/vplOrderImport/form">订单添加</a></li></shiro:hasPermission>
 		<li><a href="${ctx}/vpl/vplOrderImport/">订单列表</a></li>
 		<li class="active"><a href="${ctx}/vpl/vplOrderImport/list?remarks=online">在线产品</a></li>
-		<li><a href="${ctx}/vpl/tsyOrderDelivery/">出货列表</a></li>
+		<li><a href="${ctx}/vpl/vplOrderDelivery/">出货列表</a></li>
 	</ul>
-	<form:form id="searchForm" modelAttribute="vplOrderImport" action="${ctx}/vpl/vplOrderImport/" method="post" class="breadcrumb form-search">
+	<form:form id="searchForm" modelAttribute="vplOrderImport" action="${ctx}/vpl/vplOrderImport/list?remarks=online" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
@@ -105,7 +106,7 @@
 		<c:forEach items="${page.list}" var="vplOrderImport" varStatus="index">
 			<tr>
 				<td style="text-align: center">
-					<input type="checkbox" id="id_${customsIntro.id}" value="${tsyOrderImport.id}"/>
+					<input type="checkbox" id="id_${vplOrderImport.id}" value="${vplOrderImport.id}"/>
 				</td>
 				<td style="text-align: center">${index.count}</td>
 
