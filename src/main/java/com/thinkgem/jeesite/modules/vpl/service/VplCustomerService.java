@@ -5,6 +5,7 @@ package com.thinkgem.jeesite.modules.vpl.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,26 +23,33 @@ import com.thinkgem.jeesite.modules.vpl.dao.VplCustomerDao;
 @Transactional(readOnly = true)
 public class VplCustomerService extends CrudService<VplCustomerDao, VplCustomer> {
 
+	@Autowired
+	private VplCustomerDao vplCustomerDao;
+
 	public VplCustomer get(String id) {
 		return super.get(id);
 	}
-	
+
 	public List<VplCustomer> findList(VplCustomer vplCustomer) {
 		return super.findList(vplCustomer);
 	}
-	
+
 	public Page<VplCustomer> findPage(Page<VplCustomer> page, VplCustomer vplCustomer) {
 		return super.findPage(page, vplCustomer);
 	}
-	
+
 	@Transactional(readOnly = false)
 	public void save(VplCustomer vplCustomer) {
 		super.save(vplCustomer);
 	}
-	
+
 	@Transactional(readOnly = false)
 	public void delete(VplCustomer vplCustomer) {
 		super.delete(vplCustomer);
 	}
-	
+
+	public VplCustomer getCusPrice(VplCustomer vplCustomer){
+		return vplCustomerDao.getCusPrice(vplCustomer);
+	}
+
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thinkgem.jeesite.modules.vpl.dao.VplCustomerDao">
-    
-	<sql id="vplCustomerColumns">
+
+    <sql id="vplCustomerColumns">
 		a.id AS "id",
 		a.cus_no AS "cusNo",
 		a.cus_name AS "cusName",
@@ -15,55 +15,91 @@
 		a.remarks AS "remarks",
 		a.del_flag AS "delFlag"
 	</sql>
-	
-	<sql id="vplCustomerJoins">
+
+    <sql id="vplCustomerColumns_1">
+		a.id AS "id",
+		a.cus_no AS "cusNo",
+		a.cus_name AS "cusName",
+		GROUP_CONCAT(a.price) AS "price",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
 	</sql>
-    
-	<select id="get" resultType="VplCustomer">
-		SELECT 
-			<include refid="vplCustomerColumns"/>
-		FROM vpl_customer a
-		<include refid="vplCustomerJoins"/>
-		WHERE a.id = #{id}
-	</select>
-	
-	<select id="findList" resultType="VplCustomer">
-		SELECT 
-			<include refid="vplCustomerColumns"/>
-		FROM vpl_customer a
-		<include refid="vplCustomerJoins"/>
-		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
-		</where>
-		<choose>
-			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
-				ORDER BY ${page.orderBy}
-			</when>
-			<otherwise>
-				ORDER BY a.update_date DESC
-			</otherwise>
-		</choose>
-	</select>
-	
-	<select id="findAllList" resultType="VplCustomer">
-		SELECT 
-			<include refid="vplCustomerColumns"/>
-		FROM vpl_customer a
-		<include refid="vplCustomerJoins"/>
-		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
-		</where>		
-		<choose>
-			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
-				ORDER BY ${page.orderBy}
-			</when>
-			<otherwise>
-				ORDER BY a.update_date DESC
-			</otherwise>
-		</choose>
-	</select>
-	
-	<insert id="insert">
+
+    <sql id="vplCustomerJoins">
+    </sql>
+
+    <select id="get" resultType="VplCustomer">
+        SELECT
+        <include refid="vplCustomerColumns"/>
+        FROM vpl_customer a
+        <include refid="vplCustomerJoins"/>
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="getCusPrice" resultType="VplCustomer">
+        SELECT
+        <include refid="vplCustomerColumns"/>
+        FROM vpl_customer a
+        <include refid="vplCustomerJoins"/>
+        <where>
+            1=1
+            <if test="cusNo!= null and cusNo != ''">
+                AND a.cus_no = #{cusNo}
+            </if>
+            <if test="typeId!= null and typeId != ''">
+                AND a.type_id =#{typeId}
+            </if>
+        </where>
+    </select>
+
+    <select id="findList" resultType="VplCustomer">
+        SELECT
+        <include refid="vplCustomerColumns_1"/>
+        FROM vpl_customer a
+        <include refid="vplCustomerJoins"/>
+        <where>
+            a.del_flag = #{DEL_FLAG_NORMAL}
+            <if test="cusNo!= null and cusNo != ''">
+                AND a.cus_no LIKE concat('%', #{cusNo},'%')
+            </if>
+            <if test="cusName!= null and cusName != ''">
+                AND a.cus_name LIKE concat('%', #{cusName},'%')
+            </if>
+            GROUP BY cus_no
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="findAllList" resultType="VplCustomer">
+        SELECT
+        <include refid="vplCustomerColumns"/>
+        FROM vpl_customer a
+        <include refid="vplCustomerJoins"/>
+        <where>
+            a.del_flag = #{DEL_FLAG_NORMAL}
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <insert id="insert">
 		INSERT INTO vpl_customer(
 			cus_no,
 			cus_name,
@@ -88,8 +124,37 @@
 			#{delFlag}
 		)
 	</insert>
-	
-	<update id="update">
+
+    <!-- <insert id="insertCusList" parameterType="java.util.List">
+         INSERT INTO vpl_customer(
+         cus_no,
+         cus_name,
+         type_id,
+         price,
+         create_by,
+         create_date,
+         update_by,
+         update_date,
+         remarks,
+         del_flag
+         ) VALUES
+         <foreach collection="list" item="item" index="index" separator=",">(
+             #{item.cusNo},
+             #{item.cusName},
+             #{item.typeId},
+             #{item.price},
+             #{item.createBy.id},
+             #{item.createDate},
+             #{item.updateBy.id},
+             #{item.updateDate},
+             #{item.remarks},
+             #{item.delFlag}
+             )
+         </foreach>
+     </insert>-->
+
+
+    <update id="update">
 		UPDATE vpl_customer SET 	
 			cus_no = #{cusNo},
 			cus_name = #{cusName},
@@ -100,11 +165,11 @@
 			remarks = #{remarks}
 		WHERE id = #{id}
 	</update>
-	
-	<update id="delete">
+
+    <update id="delete">
 		UPDATE vpl_customer SET 
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
-	
+
 </mapper>

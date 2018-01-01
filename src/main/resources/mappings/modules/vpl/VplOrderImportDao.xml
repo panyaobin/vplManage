@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.vpl.dao.VplOrderImportDao">
+    
+	<sql id="vplOrderImportColumns">
+		a.id AS "id",
+		a.order_id AS "orderId",
+		a.cus_name AS "cusName",
+		a.pro_model AS "proModel",
+		a.leng AS "leng",
+		a.wide AS "wide",
+		a.counts AS "counts",
+		a.has_counts AS "hasCounts",
+		a.price AS "price",
+		a.side_type AS "sideType",
+		a.work_type AS "workType",
+		a.order_date AS "orderDate",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="vplOrderImportJoins">
+	</sql>
+    
+	<select id="get" resultType="VplOrderImport">
+		SELECT 
+			<include refid="vplOrderImportColumns"/>
+		FROM vpl_order_import a
+		<include refid="vplOrderImportJoins"/>
+		WHERE a.id = #{id}
+	</select>
+
+	<select id="findListByProModel" resultType="VplOrderImport" parameterType="String">
+		SELECT
+		<include refid="vplOrderImportColumns"/>
+		FROM vpl_order_import a
+		<include refid="vplOrderImportJoins"/>
+		<where>
+			a.del_flag = 0
+			<if test="proModel != null and proModel != ''">
+				AND a.pro_model = #{proModel}
+			</if>
+			<if test="orderId != null and orderId != ''">
+				AND a.order_id = #{orderId}
+			</if>
+		</where>
+	</select>
+
+
+	<select id="findList" resultType="VplOrderImport">
+		SELECT 
+			<include refid="vplOrderImportColumns"/>
+		FROM vpl_order_import a
+		<include refid="vplOrderImportJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="cusName!= null and cusName != ''">
+				AND a.cus_name LIKE concat('%', #{cusName},'%')
+			</if>
+			<if test="orderId!= null and orderId != ''">
+				AND a.order_id =${orderId}
+			</if>
+			<if test="proModel!= null and proModel != ''">
+				AND a.pro_model =${proModel}
+			</if>
+			<if test="remarks=='online'">
+				AND a.counts-a.has_counts !=0
+			</if>
+
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="VplOrderImport">
+		SELECT 
+			<include refid="vplOrderImportColumns"/>
+		FROM vpl_order_import a
+		<include refid="vplOrderImportJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO vpl_order_import(
+			order_id,
+			cus_name,
+			pro_model,
+			leng,
+			wide,
+			counts,
+			has_counts,
+			price,
+			side_type,
+			work_type,
+			order_date,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{orderId},
+			#{cusName},
+			#{proModel},
+			#{leng},
+			#{wide},
+			#{counts},
+			#{hasCounts},
+			#{price},
+			#{sideType},
+			#{workType},
+			#{orderDate},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE vpl_order_import SET 	
+			order_id = #{orderId},
+			cus_name = #{cusName},
+			pro_model = #{proModel},
+			leng = #{leng},
+			wide = #{wide},
+			counts = #{counts},
+			has_counts=#{hasCounts},
+			price=#{price},
+			side_type = #{sideType},
+			work_type = #{workType},
+			order_date = #{orderDate},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE vpl_order_import SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
