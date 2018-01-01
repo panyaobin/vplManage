@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.vpl.dao.VplOrderDeliveryDao">
+    
+	<sql id="vplOrderDeliveryColumns">
+		a.id AS "id",
+		a.delivery_id AS "deliveryId",
+		a.pro_model AS "proModel",
+		a.leng AS "leng",
+		a.wide AS "wide",
+		a.price AS "price",
+		a.counts AS "counts",
+		a.order_id AS "orderId",
+		a.side_type AS "sideType",
+		a.cus_name AS "cusName",
+		a.delivery_date AS "deliveryDate",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="vplOrderDeliveryJoins">
+	</sql>
+    
+	<select id="get" resultType="VplOrderDelivery">
+		SELECT 
+			<include refid="vplOrderDeliveryColumns"/>
+		FROM vpl_order_delivery a
+		<include refid="vplOrderDeliveryJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="VplOrderDelivery">
+		SELECT 
+			<include refid="vplOrderDeliveryColumns"/>
+		FROM vpl_order_delivery a
+		<include refid="vplOrderDeliveryJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="VplOrderDelivery">
+		SELECT 
+			<include refid="vplOrderDeliveryColumns"/>
+		FROM vpl_order_delivery a
+		<include refid="vplOrderDeliveryJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO vpl_order_delivery(
+			id,
+			delivery_id,
+			pro_model,
+			leng,
+			wide,
+			price,
+			counts,
+			order_id,
+			side_type,
+			cus_name,
+			delivery_date,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{deliveryId},
+			#{proModel},
+			#{leng},
+			#{wide},
+			#{price},
+			#{counts},
+			#{orderId},
+			#{sideType},
+			#{cusName},
+			#{deliveryDate},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE vpl_order_delivery SET 	
+			delivery_id = #{deliveryId},
+			pro_model = #{proModel},
+			leng = #{leng},
+			wide = #{wide},
+			price = #{price},
+			counts = #{counts},
+			order_id = #{orderId},
+			side_type = #{sideType},
+			cus_name = #{cusName},
+			delivery_date = #{deliveryDate},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE vpl_order_delivery SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

@@ -7,6 +7,8 @@ import org.hibernate.validator.constraints.Length;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
 
+import java.util.List;
+
 /**
  * 客户管理Entity
  * @author popo
@@ -19,7 +21,9 @@ public class VplCustomer extends DataEntity<VplCustomer> {
 	private String cusName;		// 客户名称
 	private String typeId;		// 面数类型ID
 	private String price;		// price
-	
+
+	private List<String> price1;
+
 	public VplCustomer() {
 		super();
 	}
@@ -62,5 +66,12 @@ public class VplCustomer extends DataEntity<VplCustomer> {
 	public void setPrice(String price) {
 		this.price = price;
 	}
-	
+
+	public List<String> getPrice1() {
+		return price1;
+	}
+
+	public void setPrice1(List<String> price1) {
+		this.price1 = price1;
+	}
 }
