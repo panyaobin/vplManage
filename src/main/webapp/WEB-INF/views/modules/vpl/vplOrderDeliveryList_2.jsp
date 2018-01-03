@@ -169,7 +169,7 @@
                 <fmt:formatDate value="${tsyOrderDelivery.deliveryDate}" pattern="yyyy-MM-dd"/>
             </td>
             <td style="text-align: center">
-                单面大面积
+                ${tsyOrderDelivery.sideType}
             </td>
             <td style="text-align: center">
                     ${tsyOrderDelivery.remarks}
