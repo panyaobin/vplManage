@@ -62,11 +62,24 @@
 				AND a.cus_name LIKE concat('%', #{cusName},'%')
 			</if>
 			<if test="orderId!= null and orderId != ''">
-				AND a.order_id =${orderId}
+				AND a.order_id =#{orderId}
 			</if>
 			<if test="proModel!= null and proModel != ''">
-				AND a.pro_model =${proModel}
+				AND a.pro_model =#{proModel}
 			</if>
+
+            <if test="orderDateS != null and orderDateS != ''">
+                AND a.order_date &gt;= #{orderDateS}
+            </if>
+            <if test="orderDateE != null and orderDateE != ''">
+                AND a.order_date &lt;= #{orderDateE}
+            </if>
+            <if test="orderDateStr != null and orderDateStr != ''">
+                AND a.order_date &gt;= #{orderDateStr}
+            </if>
+            <if test="orderDateEtr != null and orderDateEtr != ''">
+                AND a.order_date &lt;= #{orderDateEtr}
+            </if>
 			<if test="remarks=='online'">
 				AND a.counts-a.has_counts !=0
 			</if>

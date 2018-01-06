@@ -102,6 +102,7 @@
     <li><a href="${ctx}/vpl/vplOrderImport/">订单列表</a></li>
     <li><a href="${ctx}/vpl/vplOrderImport/list?remarks=online">在线产品</a></li>
     <li><a href="${ctx}/vpl/vplOrderDelivery/">出货列表</a></li>
+    <li><a href="${ctx}/vpl/vplOrderDelivery/summary">小结</a></li>
 </ul>
 <br/>
 <form:form id="inputForm" modelAttribute="vplOrderImport" action="${ctx}/vpl/vplOrderImport/save" method="post"

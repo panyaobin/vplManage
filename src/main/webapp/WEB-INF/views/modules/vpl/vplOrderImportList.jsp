@@ -23,6 +23,7 @@
 		<li class="active"><a href="${ctx}/vpl/vplOrderImport/">订单列表</a></li>
 		<li><a href="${ctx}/vpl/vplOrderImport/list?remarks=online">在线产品</a></li>
 		<li><a href="${ctx}/vpl/vplOrderDelivery/">出货列表</a></li>
+		<li><a href="${ctx}/vpl/vplOrderDelivery/summary">小结</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="vplOrderImport" action="${ctx}/vpl/vplOrderImport/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -32,8 +33,12 @@
 			<li>订单编号：<input type="text" name="orderId" value="${vplOrderImport.orderId}" style="width: 50%"></li>
 			<li>产品型号：<input type="text" name="proModel" value="${vplOrderImport.proModel}" style="width: 50%"></li>
 			<li>下单日期：
-				<input name="orderDate" id="d" placeholder="下单日期" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-					   value="<fmt:formatDate value="${tsyOrderImport.orderDate}" pattern="yyyy-MM-dd"/>"
+				<input name="orderDateS"  placeholder="下单日期" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
+					   value="<fmt:formatDate value="${vplOrderImport.orderDateS}" pattern="yyyy-MM-dd"/>"
+					   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true});"/>
+
+				<input name="orderDateE"  placeholder="下单日期" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
+					   value="<fmt:formatDate value="${vplOrderImport.orderDateE}" pattern="yyyy-MM-dd"/>"
 					   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true});"/>
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
@@ -88,7 +93,7 @@
 				<td style="text-align: center">${fns:getDictLabel(vplOrderImport.sideType, 'vpl_side_type', '')}</td>
 				<td style="text-align: center">${fns:getDictLabel(vplOrderImport.workType, 'vpl_work_type', '')}</td>
 				<td style="text-align: center">
-					<fmt:formatDate value="${vplOrderImport.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${vplOrderImport.orderDate}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td style="text-align: center">
 					${vplOrderImport.remarks}

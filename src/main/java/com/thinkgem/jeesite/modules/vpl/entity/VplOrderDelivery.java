@@ -25,6 +25,7 @@ public class VplOrderDelivery extends DataEntity<VplOrderDelivery> {
 	private String counts;		// 出货数量
 	private String orderId;		// 订单号
 	private String sideType;		// 面板类型
+	private String workType;		//颜色类型
 	private String cusName;		// 客户名称
 	private Date deliveryDate;		// 出货日期
 	private String startDateStr; //送货筛选时间
@@ -160,5 +161,13 @@ public class VplOrderDelivery extends DataEntity<VplOrderDelivery> {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+
+	public String getWorkType() {
+		return workType;
+	}
+
+	public void setWorkType(String workType) {
+		this.workType = workType;
 	}
 }

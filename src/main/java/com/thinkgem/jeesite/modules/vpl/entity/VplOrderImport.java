@@ -32,6 +32,15 @@ public class VplOrderImport extends DataEntity<VplOrderImport> {
     private String workType;        // 颜色加工类型
     private Date orderDate;        // 下单日期
 
+    private Date orderDateS;        //下单开始时间筛选
+    private Date orderDateE;        //下单结束时间筛选
+
+    private String orderDateStr;        //下单开始时间筛选
+    private String orderDateEtr;        //下单结束时间筛选
+
+    private String _monthOrderDateS;  //本月下单日期字符串
+    private String _monthOrderDateE;  //本月下单日期字符串
+
     public VplOrderImport() {
         super();
     }
@@ -133,4 +142,51 @@ public class VplOrderImport extends DataEntity<VplOrderImport> {
         this.orderDate = orderDate;
     }
 
+    public Date getOrderDateS() {
+        return orderDateS;
+    }
+
+    public void setOrderDateS(Date orderDateS) {
+        this.orderDateS = orderDateS;
+    }
+
+    public Date getOrderDateE() {
+        return orderDateE;
+    }
+
+    public void setOrderDateE(Date orderDateE) {
+        this.orderDateE = orderDateE;
+    }
+
+    public String getOrderDateStr() {
+        return orderDateStr;
+    }
+
+    public void setOrderDateStr(String orderDateStr) {
+        this.orderDateStr = orderDateStr;
+    }
+
+    public String getOrderDateEtr() {
+        return orderDateEtr;
+    }
+
+    public void setOrderDateEtr(String orderDateEtr) {
+        this.orderDateEtr = orderDateEtr;
+    }
+
+    public String get_monthOrderDateS() {
+        return _monthOrderDateS;
+    }
+
+    public void set_monthOrderDateS(String _monthOrderDateS) {
+        this._monthOrderDateS = _monthOrderDateS;
+    }
+
+    public String get_monthOrderDateE() {
+        return _monthOrderDateE;
+    }
+
+    public void set_monthOrderDateE(String _monthOrderDateE) {
+        this._monthOrderDateE = _monthOrderDateE;
+    }
 }

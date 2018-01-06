@@ -12,6 +12,7 @@
 		a.counts AS "counts",
 		a.order_id AS "orderId",
 		a.side_type AS "sideType",
+		a.work_type AS "workType",
 		a.cus_name AS "cusName",
 		a.delivery_date AS "deliveryDate",
 		a.create_by AS "createBy.id",
@@ -43,18 +44,18 @@
 			<if test="cusName != null and cusName != ''">
 				AND a.cus_name LIKE concat('%', #{cusName},'%')
 			</if>
-			<!--<if test="deliveryStartDate != null and deliveryStartDate != ''">
-				AND a.delivery_date &gt;= #{deliveryStartDate}
+			<if test="startDate != null and startDate != ''">
+				AND a.delivery_date &gt;= #{startDate}
 			</if>
-			<if test="deliveryEndDate!= null and deliveryEndDate != ''">
-				AND a.delivery_date &lt;= #{deliveryEndDate}
-			</if>-->
-			<!--<if test="_deliveryStartDate != null and _deliveryStartDate != ''">
-				AND a.delivery_date &gt;= #{_deliveryStartDate}
+			<if test="endDate!= null and endDate != ''">
+				AND a.delivery_date &lt;= #{endDate}
 			</if>
-			<if test="_deliveryEndDate!= null and _deliveryEndDate != ''">
-				AND a.delivery_date &lt;= #{_deliveryEndDate}
-			</if>-->
+			<if test="startDateStr != null and startDateStr != ''">
+				AND a.delivery_date &gt;= #{startDateStr}
+			</if>
+			<if test="endDateStr!= null and endDateStr != ''">
+				AND a.delivery_date &lt;= #{endDateStr}
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -94,6 +95,7 @@
 			counts,
 			order_id,
 			side_type,
+			work_type,
 			cus_name,
 			delivery_date,
 			create_by,
@@ -111,6 +113,7 @@
 			#{counts},
 			#{orderId},
 			#{sideType},
+			#{workType},
 			#{cusName},
 			#{deliveryDate},
 			#{createBy.id},
@@ -132,6 +135,7 @@
 			counts = #{counts},
 			order_id = #{orderId},
 			side_type = #{sideType},
+			work_type = #{workType},
 			cus_name = #{cusName},
 			delivery_date = #{deliveryDate},
 			update_by = #{updateBy.id},
