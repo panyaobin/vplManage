@@ -2,7 +2,6 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp" %>
 <html>
 
-
 <body>
 <ul class="nav nav-tabs">
     <li><a href="${ctx}/vpl/vplOrderImport/form?id=${vplOrderImport.id}">订单<shiro:hasPermission
@@ -12,6 +11,7 @@
     <li><a href="${ctx}/vpl/vplOrderImport/list?remarks=online">在线产品</a></li>
     <li class="active"><a href="#">出货单</a></li>
     <li><a href="${ctx}/vpl/vplOrderDelivery/">出货列表</a></li>
+    <li><a href="${ctx}/vpl/vplOrderDelivery/summary">小结</a></li>
 </ul>
 <form:form id="inputForm" modelAttribute="vplOrderDelivery"  action="${ctx}/vpl/vplOrderDelivery/printView" method="post"   class="form-horizontal">
     <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -72,6 +72,8 @@
             <td style="text-align: center;padding: 0px 0px;width: 7.5em">
                 <input type="text" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[0].sideType, 'vpl_side_type', '')}" name="orderDeList[0].sideType" readonly  tabindex="-6">
             </td>
+
+                <input type="hidden" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[0].workType, 'vpl_work_type', '')}" name="orderDeList[0].workType" readonly  tabindex="-6">
 
             <td style="text-align: center;margin: 0px 0px;padding: 0px 0px;width: 10em">
                 <input type="text" style="width: 8em;text-align: center" name="orderDeList[0].remarks">

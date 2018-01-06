@@ -27,6 +27,8 @@ import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.vpl.entity.VplOrderImport;
 import com.thinkgem.jeesite.modules.vpl.service.VplOrderImportService;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -63,11 +65,20 @@ public class VplOrderImportController extends BaseController {
 
     @RequiresPermissions("vpl:vplOrderImport:view")
     @RequestMapping(value = {"list", ""})
-    public String list(VplOrderImport vplOrderImport,String remarks, HttpServletRequest request, HttpServletResponse response, Model model) {
+    public String list(VplOrderImport vplOrderImport,String remarks,String orderDateS,String orderDateE, HttpServletRequest request, HttpServletResponse response, Model model) throws ParseException {
         //订单列表页面初始化时加载所有的客户代码
         VplCustomer vplCustomer = new VplCustomer();
         Page<VplCustomer> page_cus = vplCustomerService.findPage(new Page<VplCustomer>(request, response), vplCustomer);
         model.addAttribute("page_cus", page_cus);
+
+        if (StringUtils.isNotBlank(orderDateS)){
+            vplOrderImport.setOrderDateS(new SimpleDateFormat("yyyy-MM-dd").parse(orderDateS));
+            vplOrderImport.setOrderDateStr(orderDateS);
+        }
+        if (StringUtils.isNotBlank(orderDateE)){
+            vplOrderImport.setOrderDateE(new SimpleDateFormat("yyyy-MM-dd").parse(orderDateE));
+            vplOrderImport.setOrderDateEtr(orderDateE);
+        }
 
         Page<VplOrderImport> page = vplOrderImportService.findPage(new Page<VplOrderImport>(request, response), vplOrderImport);
         model.addAttribute("page", page);

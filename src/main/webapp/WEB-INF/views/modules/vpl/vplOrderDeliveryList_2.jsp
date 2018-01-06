@@ -45,10 +45,10 @@
             });
 
             $("#print").click(function () {
-                var a=$("#start").val();
-                var b=$("#end").val();
+                var a=$("#startD").val();
+                var b=$("#endD").val();
                 var c=$("#c").val();
-                location.href="${ctx}/vpl/vplOrderDelivery/deliveryPrint?fileName='出货单'&cusName="+c+"&deliveryStartDate="+a+"&deliveryEndDate="+b+"";
+                location.href="${ctx}/vpl/vplOrderDelivery/deliveryPrint?fileName='出货单'&cusName="+c+"&startDateStr="+a+"&endDateStr="+b+"";
             });
         });
 
@@ -79,6 +79,7 @@
     <li><a href="${ctx}/vpl/vplOrderImport/">订单列表</a></li>
     <li><a href="${ctx}/vpl/vplOrderImport/list?remarks=online">在线产品</a></li>
     <li class="active"><a href="${ctx}/vpl/vplOrderDelivery/">出货列表</a></li>
+    <li><a href="${ctx}/vpl/vplOrderDelivery/summary">小结</a></li>
 </ul>
 <form:form id="searchForm" modelAttribute="vplOrderDelivery" action="${ctx}/vpl/vplOrderDelivery" method="post" class="breadcrumb form-search">
     <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -87,12 +88,12 @@
             <%--<li>订单编号：<input id="a" class="" name="orderId" value="${tsyOrderDelivery.orderId}" style="width: 7em;" type="text" placeholder="订单编号"/>&nbsp;&nbsp;&nbsp;</li>
             <li>客户型号：<input id="b" class="" name="proModel" value="${tsyOrderDelivery.proModel}" style="width: 7em;" type="text" placeholder="客户型号"/>&nbsp;&nbsp;&nbsp;</li>--%>
         <li>客户名称：<input id="c" class="" name="cusName" value="${vplOrderDelivery.cusName}" style="width: 7em;" type="text" placeholder="客户名称"/>&nbsp;&nbsp;&nbsp;</li>
-        <li>下单日期：
-            <input name="startDate"  placeholder="送货日期" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
+        <li>出货日期：
+            <input name="startDateStr" id="startD"  placeholder="送货日期" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
                    value="<fmt:formatDate value="${vplOrderDelivery.startDate}" pattern="yyyy-MM-dd"/>"
                    onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true});"/>
             -
-            <input name="endDate"  placeholder="送货日期" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
+            <input name="endDateStr" id="endD"  placeholder="送货日期" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
                    value="<fmt:formatDate value="${vplOrderDelivery.endDate}" pattern="yyyy-MM-dd"/>"
                    onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true});"/>
         </li>
@@ -175,8 +176,6 @@
                     ${tsyOrderDelivery.remarks}
             </td>
             <shiro:hasPermission name="vpl:vplOrderDelivery:edit"><td style="text-align: center">
-                    <%--<a href="#">作废</a>--%>
-                            ${tsyOrderDelivery.id}
                 <a href="${ctx}/vpl/vplOrderDelivery/delete?id=${tsyOrderDelivery.id}" onclick="return confirmx('确认要作废该出货单吗？', this.href)">作废</a>
             </td></shiro:hasPermission>
         </tr>
