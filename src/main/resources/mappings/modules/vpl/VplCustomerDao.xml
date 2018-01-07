@@ -69,6 +69,11 @@
             <if test="cusName!= null and cusName != ''">
                 AND a.cus_name LIKE concat('%', #{cusName},'%')
             </if>
+
+            <if test="typeId!= null and typeId != ''">
+                AND a.type_id = #{typeId}
+            </if>
+
             GROUP BY cus_no
         </where>
         <choose>
