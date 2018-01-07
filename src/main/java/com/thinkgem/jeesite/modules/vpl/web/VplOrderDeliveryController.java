@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.thinkgem.jeesite.common.utils.utils.excel.ExcelFactory;
 import com.thinkgem.jeesite.common.utils.utils.excel.XSSFExcel;
+import com.thinkgem.jeesite.modules.sys.entity.Dict;
+import com.thinkgem.jeesite.modules.sys.service.DictService;
 import com.thinkgem.jeesite.modules.vpl.entity.*;
 import com.thinkgem.jeesite.modules.vpl.service.VplCustomerService;
 import com.thinkgem.jeesite.modules.vpl.service.VplOrderImportService;
@@ -53,6 +55,9 @@ public class VplOrderDeliveryController extends BaseController {
 
     @Autowired
     private VplCustomerService vplCustomerService;
+
+    @Autowired
+    private DictService dictService;
 
     @ModelAttribute
     public VplOrderDelivery get(@RequestParam(required = false) String id) {
@@ -229,18 +234,6 @@ public class VplOrderDeliveryController extends BaseController {
         tsyOrderImport4.set_monthOrderDateS(firstDay1);
         tsyOrderImport4.set_monthOrderDateE(lastDay1);
 
-       /* Page<TsyOrderImport> page5= tsyOrderImportService.findPage(new Page<TsyOrderImport>(request, response), tsyOrderImport4);
-        Double monthImpCount = 0.00;
-        if (null!=page5&&page5.getList().size()>0){
-            for (int i = 0; i <page5.getList().size() ; i++) {
-                Double leng= Double.parseDouble(page5.getList().get(i).getLeng());
-                Double wide= Double.parseDouble(page5.getList().get(i).getWide());
-                Double counts= Double.parseDouble(page5.getList().get(i).getCounts());
-                Double d=leng*wide*counts/1000000;
-                monthImpCount+=d;
-            }
-        }*/
-       // model.addAttribute("monthImpCount",new BigDecimal(monthImpCount).setScale(2, RoundingMode.HALF_UP)); //昨天出货产品面积
 
         return "modules/vpl/vplSummary";
     }
@@ -300,7 +293,7 @@ public class VplOrderDeliveryController extends BaseController {
 
             System.out.println(vplOrderImportService.get(arr[0]).getCusName() + "-----------------------------------");
 
-            vplOrderDelivery.setCusName(vplOrderImportService.get(arr[0]).getCusName());
+            vplOrderDelivery.setCusName(page.getList().get(0).getCusName());
             Page<VplOrderDelivery> page2 = vplOrderDeliveryService.findPage(new Page<VplOrderDelivery>(request, response), vplOrderDelivery);
             if (page2.getList().size() > 0) {
                 int id = Integer.parseInt(page2.getList().get(0).getDeliveryId());
@@ -338,7 +331,21 @@ public class VplOrderDeliveryController extends BaseController {
                 vpl.setWide(orderDeList.getOrderDeList().get(i).getWide());
                 vpl.setCounts(orderDeList.getOrderDeList().get(i).getCounts());
                 vpl.setPrice(orderDeList.getOrderDeList().get(i).getPrice());
-                vpl.setSideType(orderDeList.getOrderDeList().get(i).getSideType());
+
+                //这里需要根据 类型ID 和客户名称查询出对应的报价
+                VplCustomer vplCustomer = new VplCustomer();
+                vplCustomer.setCusName(vplOrderDelivery.getCusName());
+                vplCustomer.setTypeId(orderDeList.getOrderDeList().get(i).getSideType());
+                Page<VplCustomer> page = vplCustomerService.findPage(new Page<VplCustomer>(request, response), vplCustomer);
+                vpl.setPrice(page.getList().get(0).getPrice());
+
+                //这里根据 sidetypeid查询加工类型
+                Dict dict = new Dict();
+                dict.setType("vpl_side_type");
+                dict.setValue(orderDeList.getOrderDeList().get(i).getSideType());
+                Page<Dict> dictp =dictService.findPage(new Page<Dict>(request, response), dict);
+                vpl.setSideType(dictp.getList().get(0).getLabel());
+
                 //这里新增颜色参数，进入出货单
                 vpl.setWorkType(orderDeList.getOrderDeList().get(i).getWorkType());
                 vpl.setCusName(vplOrderDelivery.getCusName());

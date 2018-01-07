@@ -70,10 +70,10 @@
             </c:if>
 
             <td style="text-align: center;padding: 0px 0px;width: 7.5em">
-                <input type="text" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[0].sideType, 'vpl_side_type', '')}" name="orderDeList[0].sideType" readonly  tabindex="-6">
+                <input type="hidden" style="width: 5.5em;text-align: center" value="${orderDeList[0].sideType}" name="orderDeList[0].sideType" readonly  tabindex="-6">
+                <input type="text" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[0].sideType, 'vpl_side_type', '')}" name="" readonly  tabindex="-6">
             </td>
 
-                <input type="hidden" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[0].workType, 'vpl_work_type', '')}" name="orderDeList[0].workType" readonly  tabindex="-6">
 
             <td style="text-align: center;margin: 0px 0px;padding: 0px 0px;width: 10em">
                 <input type="text" style="width: 8em;text-align: center" name="orderDeList[0].remarks">
@@ -120,7 +120,9 @@
             </c:if>
 
             <td style="text-align: center;padding: 0px 0px;width: 7.5em">
-                <input type="text" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[1].sideType, 'vpl_side_type', '')}" name="orderDeList[1].sideType" readonly  tabindex="-6">
+                <input type="hidden" style="width: 5.5em;text-align: center" value="${orderDeList[1].sideType}" name="orderDeList[1].sideType" readonly  tabindex="-6">
+                <input type="text" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[1].sideType, 'vpl_side_type', '')}" name="" readonly  tabindex="-6">
+
             </td>
 
             <td style="text-align: center;margin: 0px 0px;padding: 0px 0px;width: 10em">
@@ -168,7 +170,9 @@
             </c:if>
 
             <td style="text-align: center;padding: 0px 0px;width: 7.5em">
-                <input type="text" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[2].sideType, 'vpl_side_type', '')}" name="orderDeList[2].sideType" readonly  tabindex="-6">
+                <input type="hidden" style="width: 5.5em;text-align: center" value="${orderDeList[2].sideType}" name="orderDeList[2].sideType" readonly  tabindex="-6">
+                <input type="text" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[2].sideType, 'vpl_side_type', '')}" name="" readonly  tabindex="-6">
+
             </td>
 
             <td style="text-align: center;margin: 0px 0px;padding: 0px 0px;width: 10em">
@@ -216,7 +220,9 @@
             </c:if>
 
             <td style="text-align: center;padding: 0px 0px;width: 7.5em">
-                <input type="text" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[3].sideType, 'vpl_side_type', '')}" name="orderDeList[3].sideType" readonly  tabindex="-6">
+                <input type="hidden" style="width: 5.5em;text-align: center" value="${orderDeList[3].sideType}" name="orderDeList[3].sideType" readonly  tabindex="-6">
+                <input type="text" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[3].sideType, 'vpl_side_type', '')}" name="" readonly  tabindex="-6">
+
             </td>
 
             <td style="text-align: center;margin: 0px 0px;padding: 0px 0px;width: 10em">
@@ -264,7 +270,8 @@
             </c:if>
 
             <td style="text-align: center;padding: 0px 0px;width: 7.5em">
-                <input type="text" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[4].sideType, 'vpl_side_type', '')}" name="orderDeList[4].sideType" readonly  tabindex="-6">
+                <input type="hidden" style="width: 5.5em;text-align: center" value="${orderDeList[4].sideType}" name="orderDeList[4].sideType" readonly  tabindex="-6">
+                <input type="text" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[4].sideType, 'vpl_side_type', '')}" name="" readonly  tabindex="-6">
             </td>
 
             <td style="text-align: center;margin: 0px 0px;padding: 0px 0px;width: 10em">
@@ -312,7 +319,9 @@
             </c:if>
 
             <td style="text-align: center;padding: 0px 0px;width: 7.5em">
-                <input type="text" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[5].sideType, 'vpl_side_type', '')}" name="orderDeList[5].sideType" readonly  tabindex="-6">
+                <input type="hidden" style="width: 5.5em;text-align: center" value="${orderDeList[5].sideType}" name="orderDeList[5].sideType" readonly  tabindex="-6">
+                <input type="text" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[5].sideType, 'vpl_side_type', '')}" name="" readonly  tabindex="-6">
+
             </td>
 
             <td style="text-align: center;margin: 0px 0px;padding: 0px 0px;width: 10em">
@@ -360,7 +369,9 @@
             </c:if>
 
             <td style="text-align: center;padding: 0px 0px;width: 7.5em">
-                <input type="text" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[6].sideType, 'vpl_side_type', '')}" name="orderDeList[6].sideType" readonly  tabindex="-6">
+                <input type="hidden" style="width: 5.5em;text-align: center" value="${orderDeList[6].sideType}" name="orderDeList[6].sideType" readonly  tabindex="-6">
+                <input type="text" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[6].sideType, 'vpl_side_type', '')}" name="" readonly  tabindex="-6">
+
             </td>
 
             <td style="text-align: center;margin: 0px 0px;padding: 0px 0px;width: 10em">
@@ -408,7 +419,9 @@
             </c:if>
 
             <td style="text-align: center;padding: 0px 0px;width: 7.5em">
-                <input type="text" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[7].sideType, 'vpl_side_type', '')}" name="orderDeList[7].sideType" readonly  tabindex="-6">
+                <input type="hidden" style="width: 5.5em;text-align: center" value="${orderDeList[7].sideType}" name="orderDeList[7].sideType" readonly  tabindex="-6">
+                <input type="text" style="width: 5.5em;text-align: center" value="${fns:getDictLabel(orderDeList[7].sideType, 'vpl_side_type', '')}" name="" readonly  tabindex="-6">
+
             </td>
 
             <td style="text-align: center;margin: 0px 0px;padding: 0px 0px;width: 10em">
