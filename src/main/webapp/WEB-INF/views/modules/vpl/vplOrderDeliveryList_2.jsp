@@ -117,7 +117,7 @@
         <th style="text-align: center">客户型号</th>
         <th style="text-align: center">宽度</th>
         <th style="text-align: center">长度</th>
-        <th style="text-align: center">订单数量</th>
+        <th style="text-align: center">出货数量</th>
         <th style="text-align: center">面&nbsp;积</th>
         <th style="text-align: center">订单号</th>
         <th style="text-align: center">出货日期</th>
