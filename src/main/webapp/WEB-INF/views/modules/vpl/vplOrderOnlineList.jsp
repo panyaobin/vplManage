@@ -90,7 +90,7 @@
 				<th style="text-align: center">客户型号</th>
 				<th style="text-align: center">宽度</th>
 				<th style="text-align: center">长度</th>
-				<th style="text-align: center">订单数量</th>
+				<th style="text-align: center">在线数量</th>
 				<th style="text-align: center">面&nbsp;积</th>
 				<th style="text-align: center">类&nbsp;型</th>
 				<th style="text-align: center">颜&nbsp;色</th>
@@ -122,7 +122,7 @@
 				<td style="text-align: center">${vplOrderImport.proModel}</td>
 				<td style="text-align: center">${vplOrderImport.wide}</td>
 				<td style="text-align: center">${vplOrderImport.leng}</td>
-				<td style="text-align: center">${vplOrderImport.counts}</td>
+				<td style="text-align: center">${vplOrderImport.counts-vplOrderImport.hasCounts}</td>
 				<td style="text-align: center">
 					<fmt:formatNumber type="number" value="${vplOrderImport.wide*vplOrderImport.leng*vplOrderImport.counts/1000000}" pattern="0.000" maxFractionDigits="3"/>
 				</td>

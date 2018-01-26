@@ -463,17 +463,15 @@
             $("._counts").blur(function () {
                 var co=parseInt($(this).val()); //出货数量
                 var lco=parseInt($(this).parents().prev().prev().prev().prev().children("input").val());   //获取 长度
-                var hco=parseInt($(this).parents().next().next().next().next().children("input").val());  //获取 剩余库存数量
+                var hco=parseInt($(this).parents().next().next().next().next().next().next().children("input").val()); //获取剩余库存数量
                 if(co>hco){
-                  debugger;
                     layer.msg("超出库存,请核对出货数量！");
                     $("#_dePrint").attr("disabled",true);
                     $(this).focus();
                 }else {
-                    debugger;
                     if(!isNaN(co)) {
                         if (!isNaN(lco)) {
-                            $(this).parents().next().children("input").val(co * 250 * lco / 1000000);   //获取 面积
+                            $(this).parents().next().children("input").val((co * 250 * lco / 1000000).toFixed(3));   //获取 面积
                             $("#_dePrint").attr("disabled", false);
                         }else {
                             layer.msg("无产品信息！");

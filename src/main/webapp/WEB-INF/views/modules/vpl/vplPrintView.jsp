@@ -423,14 +423,14 @@
                 </c:if>
                 <td class=xl7012718 style='border-top:none;border-left:none;font-size: 1.3em'>${print.counts}</td>
                 <c:if test="${print.proModel!=''}">
-                    <td class=xl7012718 style='border-top:none;border-left:none;font-size: 1.3em'>${print.wide*print.leng*print.counts/1000000}</td>
+                    <td class=xl7012718 style='border-top:none;border-left:none;font-size: 1.3em'><fmt:formatNumber type="number" value="${print.wide*print.leng*print.counts/1000000}" pattern="0.000" maxFractionDigits="3"/></td>
                 </c:if>
                 <c:if test="${print.proModel==''}">
                     <td class=xl7012718 style='border-top:none;border-left:none;font-size: 1.3em'>&nbsp;</td>
                 </c:if>
 
                 <c:if test="${print.proModel!=''}">
-                    <td class=xl7012718 style='border-top:none;border-left:none;font-size: 1.3em;width: 7em'>${print.sideType}</td>
+                    <td class=xl7012718 style='border-top:none;border-left:none;font-size: 1.3em;width: 7em'>${fns:getDictLabel(print.sideType, 'vpl_side_type', '')}</td>
                 </c:if>
                 <c:if test="${print.proModel==''}">
                     <td class=xl7012718 style='border-top:none;border-left:none;font-size: 1.3em'>&nbsp;</td>
