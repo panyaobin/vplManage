@@ -45,14 +45,14 @@
             <td style="text-align: center">
                 <c:if test="${dayDeliCount==0}">0</c:if>
                 <c:if test="${dayDeliCount!=0}">
-                    <fmt:formatNumber value="0" pattern="##.##" minFractionDigits="3" ></fmt:formatNumber>
+                    <fmt:formatNumber value="${dayDeliCount}" pattern="##.##" minFractionDigits="3" ></fmt:formatNumber>
                 </c:if>
             </td>
             <td style="text-align: center">当日下单</td>
             <td style="text-align: center">
                 <c:if test="${dayImpCount==0}">0</c:if>
                 <c:if test="${dayImpCount!=0}">
-                    <fmt:formatNumber value="0" pattern="##.##" minFractionDigits="3" ></fmt:formatNumber>
+                    <fmt:formatNumber value="${dayImpCount}" pattern="##.##" minFractionDigits="3" ></fmt:formatNumber>
                 </c:if>
 
             </td>
@@ -62,14 +62,14 @@
             <td style="text-align: center">
                 <c:if test="${yesDeliCount==0}">0</c:if>
                 <c:if test="${yesDeliCount!=0}">
-                    <fmt:formatNumber value="0" pattern="##.##" minFractionDigits="3" ></fmt:formatNumber>
+                    <fmt:formatNumber value="${yesDeliCount}" pattern="##.##" minFractionDigits="3" ></fmt:formatNumber>
                 </c:if>
             </td>
             <td style="text-align: center">上日下单</td>
             <td style="text-align: center">
                 <c:if test="${dayDeLiCount==0}">0</c:if>
                 <c:if test="${dayDeLiCount!=0}">
-                    <fmt:formatNumber value="0" pattern="##.##" minFractionDigits="3" ></fmt:formatNumber>
+                    <fmt:formatNumber value="${dayDeLiCount}" pattern="##.##" minFractionDigits="3" ></fmt:formatNumber>
                 </c:if>
             </td>
         </tr>
@@ -85,10 +85,10 @@
         <tr>
             <td colspan="2" style="text-align: center">合计</td>
             <td style="text-align: center">
-                <fmt:formatNumber value="0" pattern="##.##" minFractionDigits="3" ></fmt:formatNumber>
+                <fmt:formatNumber value="${monthDeliCount}" pattern="##.##" minFractionDigits="3" ></fmt:formatNumber>
             </td>
             <td style="text-align: center">
-                <fmt:formatNumber value="0" pattern="##.##" minFractionDigits="3" ></fmt:formatNumber>
+                <fmt:formatNumber value="${monDeLiCount}" pattern="##.##" minFractionDigits="3" ></fmt:formatNumber>
             </td>
         </tr>
             <%--<c:forEach items="" var="">--%>

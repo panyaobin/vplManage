@@ -67,7 +67,6 @@
 
         //每条数据切换面板类型时候获取面板类型ID
         function change(obj) {
-            debugger;
             var typeId = $(obj).val();
             var cusNo = $("#_cusId").val();
             $.ajax({
@@ -86,6 +85,27 @@
             $("#_cusId").val($(obj).val());
             alert($("#_cusId").val())
         }*/
+        /*function validName() {
+            var tr1;
+            $(".trSum").each(function(){
+                   var tr= $(this).children("td").children(".proModel").val();
+                   if(tr!=""){
+                        if(tr1==tr){
+                            layer.msg("客户型号重复!");
+                            /!*tr1=1;
+                            return;*!/
+                        }/!*else{
+                            /!*tr1=tr;*!/
+                            return false;
+                        }*!/
+                   }
+            });*/
+           /* if(tr1==1){
+                return false;
+            }else{
+                return false;
+            }*/
+        }
     </script>
     <script type="text/css">
         *{
@@ -168,9 +188,9 @@
                 <td><label class="" style="width: 7em">颜色</label></td>
                 <td><label class="" style="width: 5em">备注</label></td>
             </tr>
-            <tr style="height: 3em;">
+            <tr style="height: 3em;" class="trSum">
                 <td style="width: 1px;"><input type="text" name="copyTr" style="text-align: center;width: 3em;margin-right: 1em" readonly value="1" tabindex="-1"></td>
-                <td><input type='text' name="orderImportList[0].proModel" value="${tsyOrderImport.proModel}"  style='text-align: center;width:8.5em;margin-right: 1em' class='input-small proModel'></td>
+                <td><input type='text' name="orderImportList[0].proModel"  style='text-align: center;width:8.5em;margin-right: 1em' class='input-small proModel'></td>
                 <td><input type='number' name="orderImportList[0].wide" value="" tabindex="-2" style='text-align: center;width:5em;margin-right: 1em;' class='wide' readonly></td>
                 <td><input type='number' name="orderImportList[0].leng" value="${tsyOrderImport.leng}" style='text-align: center;width:5em;margin-right: 1em;' class='input-small '></td>
                 <td><input type='number' name="orderImportList[0].counts" value="${tsyOrderImport.counts}" style='text-align: center;width:8.5em;margin-right: 1em;' class='input-small '></td>
@@ -192,7 +212,7 @@
                 <td><input type='hidden' name="orderImportList[0].price" value="" style='text-align: center;width:8.5em' class='input-small price'></td>
             </tr>
 
-            <tr style="height: 3em;">
+            <tr style="height: 3em;" class="trSum">
                 <td style="width: 1px;"><input type="text" name="copyTr"
                                                style="text-align: center;width: 3em;margin-right: 1em" readonly
                                                value="2" tabindex="-1"></td>
@@ -221,7 +241,7 @@
                 <td><input type='hidden' name="orderImportList[1].price" value="" style='text-align: center;width:8.5em' class='input-small price'></td>
             </tr>
 
-            <tr style="height: 3em;">
+            <tr style="height: 3em;" class="trSum">
                 <td style="width: 1px;"><input type="text" name="copyTr"
                                                style="text-align: center;width: 3em;margin-right: 1em" readonly
                                                value="3" tabindex="-1"></td>
@@ -249,7 +269,7 @@
                            class='input-small '></td>
                 <td><input type='hidden' name="orderImportList[2].price" value="" style='text-align: center;width:8.5em' class='input-small price'></td>
             </tr>
-            <tr style="height: 3em;">
+            <tr style="height: 3em;" class="trSum">
                 <td style="width: 1px;"><input type="text" name="copyTr"
                                                style="text-align: center;width: 3em;margin-right: 1em" readonly
                                                value="4" tabindex="-1"></td>
@@ -277,7 +297,7 @@
                            class='input-small '></td>
                 <td><input type='hidden' name="orderImportList[3].price" value="" style='text-align: center;width:8.5em' class='input-small price'></td>
             </tr>
-            <tr style="height: 3em;">
+            <tr style="height: 3em;" class="trSum">
                 <td style="width: 1px;"><input type="text" name="copyTr"
                                                style="text-align: center;width: 3em;margin-right: 1em" readonly
                                                value="5" tabindex="-1"></td>
@@ -313,7 +333,7 @@
                    style="border-radius: 20%;margin-right: 0.5em">
             <input type="button" class="btn btn-primary" id="delTr" value="一" style="border-radius: 20%">
             <input type="reset" class="btn btn-primary" value="清空" style="border-radius: 20%;float: right;">
-            <input type="submit" class="btn btn-primary" value="录入"
+            <input type="submit" class="btn btn-primary" value="录入"<%-- onclick="return validName();"--%>
                    style="border-radius: 20%;float: right;margin-right: 0.8em">
         </div>
     </div>

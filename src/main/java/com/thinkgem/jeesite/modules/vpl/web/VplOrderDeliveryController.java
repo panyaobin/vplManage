@@ -144,7 +144,7 @@ public class VplOrderDeliveryController extends BaseController {
                 dayImpCount+=d;
             }
         }
-        model.addAttribute("dayImpCount",dayImpCount); //当日出货产品面积
+        model.addAttribute("dayImpCount",dayImpCount); //当日下单产品面积
 
         //昨天出货
         VplOrderDelivery vplOrderDelivery2 = new VplOrderDelivery();
@@ -171,7 +171,8 @@ public class VplOrderDeliveryController extends BaseController {
         Calendar   cal1   =   Calendar.getInstance();
         cal1.add(Calendar.DATE,   -1);
         String yesterday1 = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
-        tsyOrderImport3.setOrderDate(cal.getTime());
+        tsyOrderImport3.setOrderDateStr(yesterday1);
+        tsyOrderImport3.setOrderDateEtr(yesterday1);
         Page<VplOrderImport> page3= vplOrderImportService.findPage(new Page<VplOrderImport>(request, response), tsyOrderImport3);
         Double dayDeLiCount = 0.00;
         if (null!=page3&&page3.getList().size()>0){
@@ -183,7 +184,7 @@ public class VplOrderDeliveryController extends BaseController {
                 dayDeLiCount+=d;
             }
         }
-        model.addAttribute("dayDeLiCount",dayDeLiCount); //昨天出货产品面积
+        model.addAttribute("dayDeLiCount",dayDeLiCount); //昨天下单产品面积
 
 
         //当月出货
@@ -231,9 +232,21 @@ public class VplOrderDeliveryController extends BaseController {
         Calendar cale1 = Calendar.getInstance();
         cale1.set(Calendar.DAY_OF_MONTH,cale1.getActualMaximum(Calendar.DAY_OF_MONTH));//设置为1号,当前日期既为本月第一天
         lastDay1 =new SimpleDateFormat("yyyy-MM-dd").format(cale1.getTime());
-        tsyOrderImport4.set_monthOrderDateS(firstDay1);
-        tsyOrderImport4.set_monthOrderDateE(lastDay1);
-
+        tsyOrderImport4.setOrderDateStr(firstDay1);
+        tsyOrderImport4.setOrderDateEtr(lastDay1);
+        Page<VplOrderImport> page5= vplOrderImportService.findPage(new Page<VplOrderImport>(request, response),
+                tsyOrderImport4);
+        Double monDeLiCount = 0.00;
+        if (null!=page5&&page5.getList().size()>0){
+            for (int i = 0; i <page5.getList().size() ; i++) {
+                Double leng= Double.parseDouble(page5.getList().get(i).getLeng());
+                Double wide= Double.parseDouble(page5.getList().get(i).getWide());
+                Double counts= Double.parseDouble(page5.getList().get(i).getCounts());
+                Double d=leng*wide*counts/1000000;
+                monDeLiCount+=d;
+            }
+        }
+        model.addAttribute("monDeLiCount",monDeLiCount); //当月下单产品面积
 
         return "modules/vpl/vplSummary";
     }
