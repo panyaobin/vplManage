@@ -465,7 +465,7 @@
                 var lco=parseInt($(this).parents().prev().prev().prev().prev().children("input").val());   //获取 长度
                 var hco=parseInt($(this).parents().next().next().next().next().next().next().children("input").val()); //获取剩余库存数量
                 if(co>hco){
-                    layer.msg("超出库存,请核对出货数量！");
+                    showTip("超出库存,请核对出货数量！");
                     $("#_dePrint").attr("disabled",true);
                     $(this).focus();
                 }else {
@@ -474,7 +474,7 @@
                             $(this).parents().next().children("input").val((co * 250 * lco / 1000000).toFixed(3));   //获取 面积
                             $("#_dePrint").attr("disabled", false);
                         }else {
-                            layer.msg("无产品信息！");
+                            showTip("无产品信息！");
                             $("#_dePrint").attr("disabled", false);
                         }
                     }

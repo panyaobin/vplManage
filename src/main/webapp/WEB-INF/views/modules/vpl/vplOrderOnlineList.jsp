@@ -26,10 +26,10 @@
                     if(ids !="" && ids != null){
                         location.href= "${ctx}/vpl/vplOrderDelivery/orderDelivery?ids="+ids+"";
                     }else{
-                        layer.msg("请选择需要生成出货单的数据！");
+                        showTip("请选择需要生成出货单的数据！");
                     }
                 }else {
-                    layer.msg("出货条数不得大于8条!");
+                    showTip("出货条数不得大于8条!");
                 }
             });
 

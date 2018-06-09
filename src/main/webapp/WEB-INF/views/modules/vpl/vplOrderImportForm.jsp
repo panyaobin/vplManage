@@ -28,23 +28,26 @@
             $("#orderDate").val(str);
 
             //默认宽度250  在客户型号(产品型号不为空的情况下才显示默认值)
-            $(".wide").val("");
-            if ($(".proModel").val() != "") {
-                $("input[name='orderImportList[0].proModel']").parents().next().children(".wide").val("250");
-            }
-            $(".proModel").blur(function () {
-                if ($(this).val() != "") {
-                    $(this).parents().next().children(".wide").val("250");
-                }
-            });
+            /* $(".wide").val("");
+             if ($(".proModel").val() != "") {
+                 $("input[name='orderImportList[0].proModel']").parents().next().children(".wide").val("250");
+             }
+             $(".proModel").blur(function () {
+                 if ($(this).val() != "") {
+                     $(this).parents().next().children(".wide").val("250");
+                 }
+             });*/
+
+
         });
 
         $(function () {
             var num = 5;
             $("#addTr").click(function () {
                 num++;
-               // $("#table").append("<tr style='height: 3em;'><td style='width: 1px;'><input type='text'  name='copyTr' style='text-align: center;width: 3em;margin-right: 1em' readonly  value='" + num + "'  tabindex='-1'></td><td><input type='text' name='orderImportList['+(num-1)+'].proModel' value='${tsyOrderImport.proModel}' style='text-align: center;width:8.5em;margin-right: 1em' class='input-small proModel'></td><td><input type='number' name='orderImportList['+(num-1)+'].wide' value='' tabindex='-2' style='text-align: center;width:5em;margin-right: 1em;' class='wide' readonly></td><td><input type='number' name='orderImportList['+(num-1)+'].leng' value='${tsyOrderImport.leng}' style='text-align: center;width:5em;margin-right: 1em;' class='input-small '></td><td><input type='number' name='orderImportList['+(num-1)+'].counts' value='${tsyOrderImport.counts}' style='text-align: center;width:8.5em;margin-right: 1em;' class='input-small '></td><td><select style='text-align: center;width:8em;margin-right: 1em;' class='input-small sideType'  name='orderImportList['+(num-1)+'].sideType'><option>${fns:getDictLabel(num2, 'tsy_side_type', '')}</option><c:forEach items='${sideTypeList}' var='side'><option value='${side.value}'>${side.label}</option></c:forEach></select></td><td><select style='text-align: center;width:7em;margin-right: 1em;' class='input-small' name='orderImportList['+(num-1)+'].workType'><option>${fns:getDictLabel(num, 'tsy_work_type', '')}</option><c:forEach items='${workTypeList}' var='dict'><option value='${dict.value}'>${dict.label}</option></c:forEach></select></td><td><input type='text' name='orderImportList['+(num-1)+'].remarks' value='${tsyOrderImport.remarks}' style='text-align: center;width:8.5em' class='input-small '></td></tr>");
-                $("#table").append("<tr style='height: 3em;'><td style='width: 1px;'><input type='text'  name='copyTr' style='text-align: center;width: 3em;margin-right: 1em' readonly  value='"+num+"'  tabindex='-1'></td><td><input type='text' name='orderImportList["+(num-1)+"].proModel' value='${tsyOrderImport.proModel}' style='text-align: center;width:8.5em;margin-right: 1em' class='input-small proModel'  onblur='checkRepeat(this);'></td><td><input type='number' name='orderImportList["+(num-1)+"].wide' value='' tabindex='-2' style='text-align: center;width:5em;margin-right: 1em;' class='wide' readonly></td><td><input type='number' name='orderImportList["+(num-1)+"].leng' value='${tsyOrderImport.leng}' style='text-align: center;width:5em;margin-right: 1em;' class='input-small '></td><td><input type='number' name='orderImportList["+(num-1)+"].counts' value='${tsyOrderImport.counts}' style='text-align: center;width:8.5em;margin-right: 1em;' class='input-small '></td><td><select style='text-align: center;width:8em;margin-right: 1em;' class='input-small sideType'  name='orderImportList["+(num-1)+"].sideType' onchange='change(this)'><option></option><c:forEach items='${sideTypeList}' var='side'><option value='${side.value}'>${side.label}</option></c:forEach></select></td><td><select style='text-align: center;width:7em;margin-right: 1em;' class='input-small' name='orderImportList["+(num-1)+"].workType'><option></option><c:forEach items='${workTypeList}' var='dict'><option value='${dict.value}'>${dict.label}</option></c:forEach></select></td><td><input type='text' name='orderImportList["+(num-1)+"].remarks' value='${tsyOrderImport.remarks}' style='text-align: center;width:8.5em' class='input-small '></td><td><input type='hidden' name='orderImportList["+(num-1)+"].price' value='' style='text-align: center;width:8.5em' class='input-small price'></td></tr>");});
+                // $("#table").append("<tr style='height: 3em;'><td style='width: 1px;'><input type='text'  name='copyTr' style='text-align: center;width: 3em;margin-right: 1em' readonly  value='" + num + "'  tabindex='-1'></td><td><input type='text' name='orderImportList['+(num-1)+'].proModel' value='${tsyOrderImport.proModel}' style='text-align: center;width:8.5em;margin-right: 1em' class='input-small proModel'></td><td><input type='number' name='orderImportList['+(num-1)+'].wide' value='' tabindex='-2' style='text-align: center;width:5em;margin-right: 1em;' class='wide' readonly></td><td><input type='number' name='orderImportList['+(num-1)+'].leng' value='${tsyOrderImport.leng}' style='text-align: center;width:5em;margin-right: 1em;' class='input-small '></td><td><input type='number' name='orderImportList['+(num-1)+'].counts' value='${tsyOrderImport.counts}' style='text-align: center;width:8.5em;margin-right: 1em;' class='input-small '></td><td><select style='text-align: center;width:8em;margin-right: 1em;' class='input-small sideType'  name='orderImportList['+(num-1)+'].sideType'><option>${fns:getDictLabel(num2, 'tsy_side_type', '')}</option><c:forEach items='${sideTypeList}' var='side'><option value='${side.value}'>${side.label}</option></c:forEach></select></td><td><select style='text-align: center;width:7em;margin-right: 1em;' class='input-small' name='orderImportList['+(num-1)+'].workType'><option>${fns:getDictLabel(num, 'tsy_work_type', '')}</option><c:forEach items='${workTypeList}' var='dict'><option value='${dict.value}'>${dict.label}</option></c:forEach></select></td><td><input type='text' name='orderImportList['+(num-1)+'].remarks' value='${tsyOrderImport.remarks}' style='text-align: center;width:8.5em' class='input-small '></td></tr>");
+                $("#table").append("<tr style='height: 3em;'><td style='width: 1px;'><input type='text'  name='copyTr' style='text-align: center;width: 3em;margin-right: 1em' readonly  value='" + num + "'  tabindex='-1'></td><td><input type='text' name='orderImportList[" + (num - 1) + "].proModel' value='${tsyOrderImport.proModel}' style='text-align: center;width:8.5em;margin-right: 1em' class='input-small proModel'  onblur='checkRepeat(this);'></td><td><input type='number' name='orderImportList[" + (num - 1) + "].wide' value='' tabindex='-2' style='text-align: center;width:5em;margin-right: 1em;' class='wide' readonly></td><td><input type='number' name='orderImportList[" + (num - 1) + "].leng' value='${tsyOrderImport.leng}' style='text-align: center;width:5em;margin-right: 1em;' class='input-small '></td><td><input type='number' name='orderImportList[" + (num - 1) + "].counts' value='${tsyOrderImport.counts}' style='text-align: center;width:8.5em;margin-right: 1em;' class='input-small '></td><td><select style='text-align: center;width:8em;margin-right: 1em;' class='input-small sideType'  name='orderImportList[" + (num - 1) + "].sideType' onchange='change(this)'><option></option><c:forEach items='${sideTypeList}' var='side'><option value='${side.value}'>${side.label}</option></c:forEach></select></td><td><select style='text-align: center;width:7em;margin-right: 1em;' class='input-small' name='orderImportList[" + (num - 1) + "].workType'><option></option><c:forEach items='${workTypeList}' var='dict'><option value='${dict.value}'>${dict.label}</option></c:forEach></select></td><td><input type='text' name='orderImportList[" + (num - 1) + "].remarks' value='${tsyOrderImport.remarks}' style='text-align: center;width:8.5em' class='input-small '></td><td><input type='hidden' name='orderImportList[" + (num - 1) + "].price' value='' style='text-align: center;width:8.5em' class='input-small price'></td></tr>");
+            });
             $("#delTr").click(function () {
                 if (num > 5) {
                     $("table tr:last").remove();
@@ -68,25 +71,36 @@
                 }
             });
         };
+
         //检查产品名称是否重复
         function checkRepeat(obj) {
-            if($(obj).is(".proModel")){
+            debugger
+            if ($(obj).is(".proModel")) {
                 var ifhas = false;
-                $("tr .proModel").each(function(){
-                    if($(this).is($(obj))){
-                    }else{
-                        if($(this).val()==$(obj).val()){
-                            ifhas=true;
+                $("tr .proModel").each(function () {
+                    if ($(this).is($(obj))) {
+                        if($(this).val()!=""){
+                            $(this).parents().next().children(".wide").val("250");
+                        }
+
+                    } else {
+                        if ($(this).val() == $(obj).val() && $(obj).val()!="") {
+                            ifhas = true;
                             return false;
                         }
                     }
                 });
-                if(ifhas){layer.msg("该商品类型已存在！");$(obj).focus();return false;}
+                if (ifhas) {
+                    // layer.msg("该商品类型已存在！");
+                    showTip("该商品类型已存在！");
+                    $(obj).focus();
+                    return false;
+                }
             }
         };
     </script>
     <script type="text/css">
-        *{
+        * {
             text-align: right;
             margin: 100px;
         }
@@ -167,29 +181,38 @@
                 <td><label class="" style="width: 5em">备注</label></td>
             </tr>
             <tr style="height: 3em;" class="trSum">
-                <td style="width: 1px;"><input type="text" name="copyTr" style="text-align: center;width: 3em;margin-right: 1em" readonly value="1" tabindex="-1"></td>
+                <td style="width: 1px;"><input type="text" name="copyTr"
+                                               style="text-align: center;width: 3em;margin-right: 1em" readonly
+                                               value="1" tabindex="-1"></td>
                 <td><input type='text' name="orderImportList[0].proModel"
                            style='text-align: center;width:8.5em;margin-right: 1em' class='input-small proModel'
                            onblur="checkRepeat(this);"></td>
-                <td><input type='number' name="orderImportList[0].wide" value="" tabindex="-2" style='text-align: center;width:5em;margin-right: 1em;' class='wide' readonly></td>
-                <td><input type='number' name="orderImportList[0].leng" value="${tsyOrderImport.leng}" style='text-align: center;width:5em;margin-right: 1em;' class='input-small '></td>
-                <td><input type='number' name="orderImportList[0].counts" value="${tsyOrderImport.counts}" style='text-align: center;width:8.5em;margin-right: 1em;' class='input-small '></td>
-                <td><select style='text-align: center;width:8em;margin-right: 1em;' class='input-small sideType' name="orderImportList[0].sideType" onchange="change(this)">
+                <td><input type='number' name="orderImportList[0].wide" value="" tabindex="-2"
+                           style='text-align: center;width:5em;margin-right: 1em;' class='wide' readonly></td>
+                <td><input type='number' name="orderImportList[0].leng" value="${tsyOrderImport.leng}"
+                           style='text-align: center;width:5em;margin-right: 1em;' class='input-small '></td>
+                <td><input type='number' name="orderImportList[0].counts" value="${tsyOrderImport.counts}"
+                           style='text-align: center;width:8.5em;margin-right: 1em;' class='input-small '></td>
+                <td><select style='text-align: center;width:8em;margin-right: 1em;' class='input-small sideType'
+                            name="orderImportList[0].sideType" onchange="change(this)">
                     <option></option>
                     <c:forEach items="${sideTypeList}" var="side">
                         <option value="${side.value}">${side.label}</option>
                     </c:forEach></select>
                 </td>
 
-                <td><select style='text-align: center;width:7em;margin-right: 1em;' class='input-small' name="orderImportList[0].workType"></option>
+                <td><select style='text-align: center;width:7em;margin-right: 1em;' class='input-small'
+                            name="orderImportList[0].workType"></option>
                     <option></option>
-                        <c:forEach items="${workTypeList}" var="dict">
-                    <option value="${dict.value}">${dict.label}</option>
+                    <c:forEach items="${workTypeList}" var="dict">
+                        <option value="${dict.value}">${dict.label}</option>
                     </c:forEach></select>
                 </td>
 
-                <td><input type='text' name="orderImportList[0].remarks" value="${tsyOrderImport.remarks}" style='text-align: center;width:8.5em' class='input-small '></td>
-                <td><input type='hidden' name="orderImportList[0].price" value="" style='text-align: center;width:8.5em' class='input-small price'></td>
+                <td><input type='text' name="orderImportList[0].remarks" value="${tsyOrderImport.remarks}"
+                           style='text-align: center;width:8.5em' class='input-small '></td>
+                <td><input type='hidden' name="orderImportList[0].price" value="" style='text-align: center;width:8.5em'
+                           class='input-small price'></td>
             </tr>
 
             <tr style="height: 3em;" class="trSum">
@@ -197,7 +220,8 @@
                                                style="text-align: center;width: 3em;margin-right: 1em" readonly
                                                value="2" tabindex="-1"></td>
                 <td><input type='text' name="orderImportList[1].proModel" value=""
-                           style='text-align: center;width:8.5em;margin-right: 1em' class='input-small proModel' onblur="checkRepeat(this);"></td>
+                           style='text-align: center;width:8.5em;margin-right: 1em' class='input-small proModel'
+                           onblur="checkRepeat(this);"></td>
                 <td><input type='number' name="orderImportList[1].wide" value="" tabindex="-2"
                            style='text-align: center;width:5em;margin-right: 1em;' class='wide' readonly></td>
                 <td><input type='number' name="orderImportList[1].leng" value=""
@@ -218,7 +242,8 @@
                     </c:forEach></select></td>
                 <td><input type='text' name="orderImportList[1].remarks" value="" style='text-align: center;width:8.5em'
                            class='input-small '></td>
-                <td><input type='hidden' name="orderImportList[1].price" value="" style='text-align: center;width:8.5em' class='input-small price'></td>
+                <td><input type='hidden' name="orderImportList[1].price" value="" style='text-align: center;width:8.5em'
+                           class='input-small price'></td>
             </tr>
 
             <tr style="height: 3em;" class="trSum">
@@ -226,7 +251,8 @@
                                                style="text-align: center;width: 3em;margin-right: 1em" readonly
                                                value="3" tabindex="-1"></td>
                 <td><input type='text' name="orderImportList[2].proModel" value=""
-                           style='text-align: center;width:8.5em;margin-right: 1em' class='input-small proModel' onblur="checkRepeat(this);"></td>
+                           style='text-align: center;width:8.5em;margin-right: 1em' class='input-small proModel'
+                           onblur="checkRepeat(this);"></td>
                 <td><input type='number' name="orderImportList[2].wide" value="" tabindex="-2"
                            style='text-align: center;width:5em;margin-right: 1em;' class='wide' readonly></td>
                 <td><input type='number' name="orderImportList[2].leng" value=""
@@ -247,14 +273,16 @@
                     </c:forEach></select></td>
                 <td><input type='text' name="orderImportList[2].remarks" value="" style='text-align: center;width:8.5em'
                            class='input-small '></td>
-                <td><input type='hidden' name="orderImportList[2].price" value="" style='text-align: center;width:8.5em' class='input-small price'></td>
+                <td><input type='hidden' name="orderImportList[2].price" value="" style='text-align: center;width:8.5em'
+                           class='input-small price'></td>
             </tr>
             <tr style="height: 3em;" class="trSum">
                 <td style="width: 1px;"><input type="text" name="copyTr"
                                                style="text-align: center;width: 3em;margin-right: 1em" readonly
                                                value="4" tabindex="-1"></td>
                 <td><input type='text' name="orderImportList[3].proModel" value=""
-                           style='text-align: center;width:8.5em;margin-right: 1em' class='input-small proModel' onblur="checkRepeat(this);"></td>
+                           style='text-align: center;width:8.5em;margin-right: 1em' class='input-small proModel'
+                           onblur="checkRepeat(this);"></td>
                 <td><input type='number' name="orderImportList[3].wide" value="" tabindex="-2"
                            style='text-align: center;width:5em;margin-right: 1em;' class='wide' readonly></td>
                 <td><input type='number' name="orderImportList[3].leng" value=""
@@ -275,14 +303,16 @@
                     </c:forEach></select></td>
                 <td><input type='text' name="orderImportList[3].remarks" value="" style='text-align: center;width:8.5em'
                            class='input-small '></td>
-                <td><input type='hidden' name="orderImportList[3].price" value="" style='text-align: center;width:8.5em' class='input-small price'></td>
+                <td><input type='hidden' name="orderImportList[3].price" value="" style='text-align: center;width:8.5em'
+                           class='input-small price'></td>
             </tr>
             <tr style="height: 3em;" class="trSum">
                 <td style="width: 1px;"><input type="text" name="copyTr"
                                                style="text-align: center;width: 3em;margin-right: 1em" readonly
                                                value="5" tabindex="-1"></td>
                 <td><input type='text' name="orderImportList[4].proModel" value=""
-                           style='text-align: center;width:8.5em;margin-right: 1em' class='input-small proModel' onblur="checkRepeat(this);"></td>
+                           style='text-align: center;width:8.5em;margin-right: 1em' class='input-small proModel'
+                           onblur="checkRepeat(this);"></td>
                 <td><input type='number' name="orderImportList[4].wide" value="" tabindex="-2"
                            style='text-align: center;width:5em;margin-right: 1em;' class='wide' readonly></td>
                 <td><input type='number' name="orderImportList[4].leng" value=""
@@ -303,7 +333,8 @@
                     </c:forEach></select></td>
                 <td><input type='text' name="orderImportList[4].remarks" value="" style='text-align: center;width:8.5em'
                            class='input-small '></td>
-                <td><input type='hidden' name="orderImportList[4].price" value="" style='text-align: center;width:8.5em' class='input-small price'></td>
+                <td><input type='hidden' name="orderImportList[4].price" value="" style='text-align: center;width:8.5em'
+                           class='input-small price'></td>
             </tr>
 
 
