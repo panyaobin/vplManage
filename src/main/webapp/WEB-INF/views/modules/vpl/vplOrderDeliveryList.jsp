@@ -23,7 +23,7 @@
     <br>
     <div style="text-align: center;margin-bottom:20px;width: 26em;font-size: 2.5em;font-weight:bolder "><span style="">送&nbsp;&nbsp;货&nbsp;&nbsp;单</span><br>
         </div>
-    <div style="width: 50.5em; font: 18px bolder;margin-bottom: 0.5em">客户名称：<input type="text" style="width: 5em;border: none;margin-right: 42em" value="${_cusName}" name="cusName">NO:<input type="text" style="width: 7.5em;border: none" value="${_cusId}" name="deliveryId"></div>
+    <div style="width: 50.5em; font: 18px bolder;margin-bottom: 0.5em">客户名称：<input type="text" style="width: 5em;border: none;margin-right: 41em" value="${_cusName}" name="cusName">NO:<input type="text" style="width: 7.5em;border: none" value="${_cusId}" name="deliveryId"></div>
     <sys:message content="${message}"/>
     <table id="contentTable" class="table table-striped table-bordered table-condensed" style="width: 70em">
         <TR>

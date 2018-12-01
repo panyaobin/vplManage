@@ -22,7 +22,7 @@
             $("#orderDelivery").bind("click",function(){
                 debugger;
                 var ids = getAllCheckId();
-                if(ids.length/2<=8){
+                if(ids.split(",").length<=8){
                     if(ids !="" && ids != null){
                         location.href= "${ctx}/vpl/vplOrderDelivery/orderDelivery?ids="+ids+"";
                     }else{
@@ -48,7 +48,7 @@
             $("input[id^='id_']:checked").each(function () {
                 ids += $(this).val() + ",";
             });
-            return ids;
+            return ids.substring(0, ids.length - 1);
         }
 	</script>
 
